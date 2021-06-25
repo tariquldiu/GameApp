@@ -1,2 +1,2 @@
 # GameApp
-Go to Master Branch
+Go to master branch to find project.
