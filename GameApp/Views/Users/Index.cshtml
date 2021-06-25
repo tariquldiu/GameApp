@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/Controller/Users.js"></script>
+
+<div ng-app="myApp">
+    <div ng-controller="Users">
+        <span style="font-size:20px; float: left;">User List</span>
+        <span style="float: right;"><button class="btn btn-success"  ng-click="Register();"><i class="glyphicon-plus"></i>Register</button></span>
+        <span style="font-size:15px; float: right;"><input type="text" style="height: 34px;" ng-model="SearchItem" placeholder="Search here...." /></span>
+
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <th>S/L</th>
+                    <th>User Name</th>
+                    <th>Password</th>
+                    <th>User Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in UserList | filter: SearchItem">
+                    <td>{{$index+1}}</td>
+                    <td>{{user.UserName}}</td>
+                    <td>{{user.Password}}</td>
+                    <td>{{user.RoleName}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning" ng-click="Edit(user);">Edit</button>
+                        <button type="button" class="btn btn-danger" ng-click="Delete(user);">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

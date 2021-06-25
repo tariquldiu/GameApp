@@ -1,0 +1,60 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="~/AdminTemplate/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+    <link href="~/AdminTemplate/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/AdminTemplate/css/font-awesome.css" rel="stylesheet">
+    <script src="~/AdminTemplate/js/jquery.min.js"></script>
+    <script src="~/AdminTemplate/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/Controller/Users.js"></script>
+</head>
+<body>
+    <div class="login" ng-app="myApp">
+        <h1><a href="https://bduniqueshop.com/">UNIQUE SHOP </a></h1>
+        <div class="login-bottom" ng-controller="Users">
+            <h2>Login</h2>
+            <div class="col-md-6 login-do">
+                <div class="login-mail">
+                    <input id="loginUserName" type="text" ng-model="User.UserName" maxlength="16" placeholder="Username" ng-keypress="SetPassFocus($event);" required="">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="login-mail">
+                    <input id="loginPassword" type="password" ng-model="User.Password" maxlength="12" ng-keypress="SetloginBtnFocus($event);" placeholder="Password" required="">
+                    <i class="fa fa-lock"></i>
+                </div>
+                <label class="hvr-shutter-in-horizontal login-sub">
+                    <input id="btnLogin" ng-disabled="!User.UserName || !User.Password" ng-click="Login()" type="submit" value="login">
+                </label>
+            </div>
+          
+            <div class="col-md-6 login-do">
+                <a href="/Users/ChangePassword" class="hvr-shutter-in-horizontal">Change Password</a>
+
+                <p>Do not have an account?</p>
+                <a href="/Users/Save" class="hvr-shutter-in-horizontal">Signup</a>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!---->
+    <div class="copy-right">
+        <p> &copy; @DateTime.Now.Year All Rights Reserved by  <a href="#">UNIQUE SHOP</a> </p>
+    </div>
+
+    <!---->
+    <!--scrolling js-->
+    <script src="~/AdminTemplate/js/jquery.nicescroll.js"></script>
+    <script src="~/AdminTemplate/js/scripts.js"></script>
+    <!--//scrolling js-->
+</body>
+</html>
+

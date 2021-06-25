@@ -1,0 +1,311 @@
+﻿
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_UserLayout2.cshtml";
+}
+
+<script src="~/Scripts/Controller/Order.js"></script>
+
+<h4 id="forms-example" class="">Order Now</h4>
+<div class="grid-form1" ng-app="myApp">
+    <div ng-controller="Order">
+        <div class="row">
+            <div class="col-md-12" style="background-color: white; border: 2px solid olive;border-radius: 5px;">
+                <div class="row">
+                    <div class="col-md-3" style="margin-right:5%;">
+                        <p><strong>Guideline - </strong>{{GameTopupToOrder.Guideline}}</p>
+                    </div>
+                    <div class="col-md-8">
+                        @*<span style="color: green;text-decoration: none;"><a href="#">If not logged in? You are not able to buy.</a></span>*@
+                        <h4>Account</h4>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div ng-if="GameTopupToOrder.IsEnterPlayerId == true">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="Order.PlayerId" maxlength="50" placeholder="Player Id" />
+                                    </div>
+                                </div>
+                                <div ng-if="GameTopupToOrder.IsSocialAccount == true">
+                                    <div class="form-group">
+                                        <select class="form-control" ng-model="ddlAccountType" ng-options="item.TypeName for item in AccountTypeList track by item.TypeId " ng-change="SetAccountType(ddlAccountType);">
+                                            <option value="">Select Account Type</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div ng-if="GameTopupToOrder.IsSocialAccount == true && Order.AccountId == 0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="Order.AccountName" maxlength="50" placeholder="Facebook" />
+                                    </div>
+                                </div>
+                                <div ng-if="GameTopupToOrder.IsSocialAccount == true && Order.AccountId == 1">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="Order.AccountName" maxlength="50" placeholder="Gmail" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div ng-if="GameTopupToOrder.IsSocialAccount == true">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="Order.AccountPassword" maxlength="50" placeholder="Password" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div ng-if="GameTopupToOrder.IsSocialAccount == true && Order.AccountId == 1">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="Order.AccountSecurityCode" maxlength="50" placeholder="Account Security Code" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" style="margin-top:5px;" ng-if="GameTopupToOrder.IsSocialAccount == true && Order.AccountId == 1">
+                                <div class="form-group">
+                                    <a href="https://www.youtube.com/watch?v=FHHnsHn9jiw" style="text-decoration: none;">How To Get Security Code</a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4>Recharge</h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul ng-repeat="product in ProductList" style="list-style-type: none; float: left; padding-left:5px;">
+                                    <li>
+                                        <div style="height:60px; width:200px; border: 1px solid olive; padding:5px; border-radius: 5px;">
+                                            <input type="checkbox" ng-click="CheckProductIds(product)" class="productChk" />
+                                            <span>{{product.ProductName}}</span><br />
+                                            <span style="color:red;">{{product.ProductPrice}}</span>
+                                            <span style="color:green;">{{product.Currency}}</span>
+                                        </div>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button style="margin-left: 0px;" class="btn btn-success" ng-click="PlaceOrder()" ng-disabled="Order.ProductIds ==''">Buy Now</button>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+
+                            <div class="col-md-3">
+
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button style="margin-left: 0px;" class="btn btn-warning btn-sm" ng-click="BackToHome()">Back To Home</button>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+
+                            <div class="col-md-3">
+
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="paymentModal" class="modal fade" ng-model="paymentModal" role="dialog" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-l">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header text-center" style=" background-color: #74B749;color:white; text-align:center;">
+                        <h4>Payment</h4>
+                        <button type="button" class="close" style="color:red;" ng-click="ClosePayment();" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Belling Details</h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" name="FirstName" class="form-control" ng-model="Order.FirstName" maxlength="50" placeholder="First Name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" name="LastName" class="form-control" ng-model="Order.LastName" maxlength="50" placeholder="Last Name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" name="Country" class="form-control" ng-model="Order.Country" maxlength="50" placeholder="Country">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" name="Phone" class="form-control" ng-model="Order.Phone" maxlength="14" placeholder="Phone">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" name="Email" class="form-control" ng-model="Order.Email" maxlength="40" placeholder="Email">
+                                </div>
+                            </div>
+                        </div>
+                        <h4>Additional Information</h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea type="text" name="OrderNote" class="form-control" ng-model="Order.OrderNote" maxlength="200" placeholder="Order Note(Optional)" style="height: 100px; width: 100%;"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Payment Gateway</h4>
+                                <input type="radio" name="GatewayName" ng-click="ShowBkash();" />&nbsp;bKash<br />
+
+                                <input type="radio" name="GatewayName" ng-click="ShowRocket();" />&nbsp;Rocket<br />
+
+                                <input type="radio" name="GatewayName" ng-click="ShowNagad();" />&nbsp;Nagad<br />
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <h4 style="text-align: center; margin-bottom: 0px;">Your Product</h4>
+                                    <hr />
+                                    <div style="margin: 5px;">
+                                        <h6>Product Name: {{Product.ProductName}}</h6>
+                                        <h6>Product Price: <span style="color: green">{{Product.Currency}}</span> <span style="color: red">{{Product.ProductPrice}}</span></h6>
+                                    </div>
+                                    <hr />
+                                    <ul style="list-style-type: none; margin: 5px; padding-left: 0;">
+                                        <li style="float: left;">Subtotal</li>
+                                        <li style="float: right;"><span style="color: green">{{Product.Currency}}</span> <span style="color: red">{{Product.ProductPrice}}</span></li>
+                                    </ul>
+
+                                    <div ng-if="IsBkash == true || IsRocket== true || IsNagad == true">
+                                        <hr />
+                                    </div>
+
+                                    <ul style="list-style-type: none; margin: 5px; padding-left: 0;" ng-if="IsBkash == true">
+                                        <li style="float: left;">bkash Discount</li>
+                                        <li style="float: right;"><span style="color: green">{{Product.Currency}}</span> <span style="color: red">{{PaymentGatewayList[2].DiscountAmount}}%</span></li>
+                                    </ul>
+                                    <ul style="list-style-type: none; margin: 5px; padding-left: 0;" ng-if="IsRocket == true">
+                                        <li style="float: left;">Rocket Discount</li>
+                                        <li style="float: right;"><span style="color: green">{{Product.Currency}}</span> <span style="color: red">{{PaymentGatewayList[1].DiscountAmount}}%</span></li>
+                                    </ul>
+                                    <ul style="list-style-type: none; margin: 5px; padding-left: 0;" ng-if="IsNagad == true">
+                                        <li style="float: left;">Nagad Discount</li>
+                                        <li style="float: right;"><span style="color: green">{{Product.Currency}}</span> <span style="color: red">{{PaymentGatewayList[0].DiscountAmount}}%</span></li>
+                                    </ul>
+
+
+                                    <div ng-if="IsBkash == true || IsRocket== true || IsNagad == true">
+                                        <hr />
+                                    </div>
+
+                                    <ul style="list-style-type: none; margin: 5px; padding-left: 0;" ng-if="IsBkash == true">
+                                        <li style="float: left;">bkash Charge</li>
+                                        <li style="float: right;"><span style="color: green">{{Product.Currency}}</span> <span style="color: red">{{PaymentGatewayList[2].ChargeAmount}}%</span></li>
+                                    </ul>
+                                    <ul style="list-style-type: none; margin: 5px; padding-left: 0;" ng-if="IsRocket == true">
+                                        <li style="float: left;">Rocket Charge</li>
+                                        <li style="float: right;"><span style="color: green">{{Product.Currency}}</span> <span style="color: red">{{PaymentGatewayList[1].ChargeAmount}}%</span></li>
+                                    </ul>
+                                    <ul style="list-style-type: none; margin: 5px; padding-left: 0;" ng-if="IsNagad == true">
+                                        <li style="float: left;">Nagad Charge</li>
+                                        <li style="float: right;"><span style="color: green">{{Product.Currency}}</span> <span style="color: red">{{PaymentGatewayList[0].ChargeAmount}}%</span></li>
+                                    </ul>
+                                    <hr />
+                                    <ul style="list-style-type: none; margin: 5px; padding-left: 0;">
+                                        <li style="float: left;">Total</li>
+                                        <li style="float: right;"><span style="color: green">{{Product.Currency}}</span> <span style="color: red">{{TotalPayAmount}}</span></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <br />
+                                <div ng-if="IsBkash == true" class="card">
+                                    <div style="margin: 5px;">
+                                        <p>bKash "Send Money" fee will be added with product price.</p>
+                                        <p style="color: red;">You need to send us {{Product.Currency}} {{TotalPayAmount}}</p>
+                                        <p>Account Type: {{PaymentGatewayList[2].AccountType}}</p>
+                                        <p>Account Number: {{PaymentGatewayList[2].AccountNumber}}</p>
+                                        <div class="form-group">
+                                            <input type="text" name="AccountNumber" class="form-control" ng-model="Order.AccountNumber" maxlength="50" placeholder="Your Account Number">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="TransactionId" class="form-control" ng-model="Order.TransactionId" maxlength="50" placeholder="Your Transaction Id">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="IsRocket == true" class="card">
+                                    <div style="margin: 5px;">
+                                        <div style="margin: 5px;">
+                                            <p>Rocket "Send Money" fee will be added with product price.</p>
+                                            <p style="color: red;">You need to send us {{Product.Currency}} {{TotalPayAmount}}</p>
+                                            <p>Account Type: {{PaymentGatewayList[1].AccountType}}</p>
+                                            <p>Account Number: {{PaymentGatewayList[1].AccountNumber}}</p>
+                                            <div class="form-group">
+                                                <input type="text" name="AccountNumber" class="form-control" ng-model="Order.AccountNumber" ng-maxlength="50" placeholder="Your Account Number">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="TransactionId" class="form-control" ng-model="Order.TransactionId" maxlength="50" placeholder="Your Transaction Id">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="IsNagad == true" class="card">
+                                    <div style="margin: 5px;">
+                                        <div style="margin: 5px;">
+                                            <p>Nagad "Send Money" fee will be added with product price.</p>
+                                            <p style="color: red;">You need to send us {{Product.Currency}} {{TotalPayAmount}}</p>
+                                            <p>Account Type: {{PaymentGatewayList[0].AccountType}}</p>
+                                            <p>Account Number: {{PaymentGatewayList[0].AccountNumber}}</p>
+                                            <div class="form-group">
+                                                <input type="text" name="AccountNumber" class="form-control" ng-model="Order.AccountNumber" maxlength="50" placeholder="Your Account Number">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="TransactionId" class="form-control" ng-model="Order.TransactionId" maxlength="50" placeholder="Your Transaction Id">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" ng-click="SavePayment()" ng-disabled="!Order.FirstName || !Order.LastName || !Order.Country  || !Order.Phone || !Order.AccountNumber  || !Order.Email || !Order.TransactionId" data-dismiss="modal">Submit</button>
+                        <button type="button" class="btn btn-danger" ng-click="CancelPayment()" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+      
+    </script>
+
+}

@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/Controller/GameTopup.js"></script>
+
+<h4 id="forms-example" class="">Insert Game Topup</h4>
+<div class="grid-form1" ng-app="myApp">
+
+    <div class="row" ng-controller="GameTopup">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="GameTopup.GameName" placeholder="Game Name">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="GameTopup.OfferName" placeholder="Offer Name">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="GameTopup.PrePurchaseMessage" placeholder="Message">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <textarea ng-model="GameTopup.Guideline" style="height: 100px; width: 100%;" placeholder="Guideline"></textarea>
+            </div>
+        </div>
+        <div class="col-md-12">
+            Image<input type="file" name="file" accept="image/*" onchange="angular.element(this).scope().selectFileforUpload(this.files)" required />
+            <br />
+        </div>
+
+        <div class="col-md-12">
+            <h4>Product List</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Checked</th>
+                        <th style="text-align: center;">Product Nmae</th>
+                        <th style="text-align: center;">Price</th>
+                        <th style="text-align: center;">Currency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="Product in ProductList">
+                        <td style="text-align:left;">
+                            <input type="checkbox" ng-model="checked" style="text-align: left;" ng-change="SelectCheckBox(Product,checked)"><br>
+                        </td>
+                        <td style="text-align: center;">{{Product.ProductName}}</td>
+                        <td style="text-align: center;">{{Product.ProductPrice}}</td>
+                        <td style="text-align: center;">{{Product.Currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <br />
+                <label>&nbsp;{{Count}} Product Selected</label>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <h4>Account Info</h4>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Player Id:&nbsp;<input type="checkbox" ng-model="GameTopup.IsEnterPlayerId"></label>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Social Account:&nbsp;<input type="checkbox" ng-model="GameTopup.IsSocialAccount"></label>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Account Type:&nbsp;<input type="checkbox" ng-model="GameTopup.IsAccountType"></label>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Facebook:&nbsp;<input type="checkbox" ng-model="GameTopup.IsFacebookAccount"></label>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Gmail:&nbsp;<input type="checkbox" ng-model="GameTopup.IsGmailAccount"></label>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Password:&nbsp;<input type="checkbox" ng-model="GameTopup.IsAccountPassword"></label>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Security Code:&nbsp;<input type="checkbox" ng-model="GameTopup.IsAccountSecurityCode"></label>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <h4>Account Activity</h4>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Is Active:&nbsp;<input type="checkbox" ng-model="GameTopup.IsActive"></label>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>
+                    <input type="submit" class="btn btn-warning"  ng-disabled="!GameTopup.GameName || !GameTopup.Guideline || !GameTopup.ProductIds" ng-click="SaveGameTopup()" value="Submit">
+                </label>
+                <label>
+                    <input type="submit" class="btn btn-danger" ng-click="BackToGameTopupList()" value="List">
+                </label>
+            </div>
+        </div>
+
+    </div>
+        </div>
+

@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/Controller/Order.js"></script>
+
+<div ng-app="myApp">
+    <div ng-controller="Order">
+        <span style="font-size:20px; float: left;">Order List</span>
+        <span style="font-size:15px; float: right;"><input type="text" ng-model="SearchItem" placeholder="Search here...."/></span>
+        <table class="table-bordered" style="font-size: 13px; width: 100%;">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">S/L</th>
+                    <th style="text-align: center;">Order No</th>
+                    <th style="text-align: center;">Email</th>
+                    <th style="text-align: center;">Account Number</th>
+                    <th style="text-align: center;">Transaction Id</th>
+                    <th style="text-align: center;">Amount</th>
+                    <th style="text-align: center;">Game Name</th>
+                    <th style="text-align: center;">User Name</th>
+                    <th style="text-align: center;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="order in OrderList | filter: SearchItem">
+                    <td style="text-align: center;">{{$index+1}}</td>
+                    <td style="text-align: center;">{{order.OrderNo}}</td>
+                    <td style="text-align: center;">{{order.Email}}</td>
+                    <td style="text-align: center;">{{order.AccountNumber}}</td>
+                    <td style="text-align: center;">{{order.TransactionId}}</td>
+                    <td style="text-align: center;">{{order.Amount}}</td>
+                    <td style="text-align: center;">{{order.GameName}}({{order.OfferName}})</td>
+                    <td style="text-align: center;"> {{order.UserName}}</td>
+
+                    <td>
+
+                        <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#productModal" ng-click="ViewProduct(order);">Details</button>
+                        <button type="button" class="btn btn-sm btn-danger" ng-click="DeleteOrder(order);">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="productModal" class="modal fade" ng-model="productModal" role="dialog">
+            <div class="modal-dialog modal-xl">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header text-center" style=" background-color: #74B749;color:white;">
+                        <button type="button" class="close" style="color:red;" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title bold">Detail List</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row-fluid">
+                            <h4>Product Details</h4>
+                            <hr />
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center;">Product Name</th>
+                                        <th style="text-align: center;">Product Type</th>
+                                        <th style="text-align: center;">Price</th>
+                                        <th style="text-align: center;">Currency</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="Product in ProductList">
+                                        <td style="text-align: center;">{{Product.ProductName}}</td>
+                                        <td style="text-align: center;">{{Product.ProductType}}</td>
+                                        <td style="text-align: center;">{{Product.ProductPrice}}</td>
+                                        <td style="text-align: center;">{{Product.Currency}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                            <h4>Order Details</h4>
+                            <hr />
+                            <p>Name: {{OrderDetails.FirstName}} {{OrderDetails.LastName}}</p>
+                            <p>Player Id: {{OrderDetails.PlayerId}}</p>
+                            <p>Country: {{OrderDetails.Country}}</p>
+                            <p>Phone: {{OrderDetails.Phone}}</p>
+                            <p>Order Note: {{OrderDetails.OrderNote}}</p>
+                            <p>Account Type: {{OrderDetails.AccountType}}</p>
+                            <p>Account Name: {{OrderDetails.AccountName}}</p>
+                            <p>Account Password: {{OrderDetails.AccountPassword}}</p>
+                            <p>Account Security Code: {{OrderDetails.AccountSecurityCode}}</p>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

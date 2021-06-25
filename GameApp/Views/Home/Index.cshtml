@@ -1,0 +1,412 @@
+﻿@{
+    ViewBag.Title = "UNIQUE SHOP";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Unique Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Games Hub Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- bootstrap-css -->
+    <link href="~/UserTemplate/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <!--// bootstrap-css -->
+    <!-- css -->
+    <link rel="stylesheet" href="~/UserTemplate/css/style.css" type="text/css" media="all" />
+    <!--// css -->
+    <!-- font-awesome icons -->
+    <link href="~/UserTemplate/css/font-awesome.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- portfolio -->
+    <link rel="stylesheet" href="~/UserTemplate/css/chocolat.css" type="text/css" media="all">
+    <!-- //portfolio -->
+    <!-- font -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
+    <!-- //font -->
+    <script src="~/UserTemplate/js/jquery-1.11.1.min.js"></script>
+    <script src="~/UserTemplate/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/Controller/Home.js"></script>
+    <style>
+        .GameTopupsZoom:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="Home">
+        <!-- banner -->
+        <div class="banner">
+            <div class="agileinfo-dot">
+                <div class="agileits-logo">
+                    <h1><a href="https://bduniqueshop.com/">UNIQUE <span>SHOP</span></a></h1>
+                </div>
+                <div class="header-top">
+                    <div class="container">
+                        <div class="header-top-info">
+                            <nav class="navbar navbar-default">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+                                    <nav>
+                                        <ul class="nav navbar-nav">
+                                            <li class="active"><a href="#">Home</a></li>
+                                            <li><a href="#about" class="scroll">About</a></li>
+                                            <li><a href="#gallery" class="scroll">Games</a></li>
+                                            <li><a href="#testimonial" class="scroll">Testimonial</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3layouts-banner-info">
+                    <div class="container">
+                        <div class="w3layouts-banner-slider">
+                            <div class="w3layouts-banner-top-slider">
+                                <div class="slider">
+                                    <div class="callbacks_container">
+                                        <div style="text-align: center;">
+                                            <img style="height: 80px; width: 250px;" src="~/UserTemplate/images/uniquelogo.png"/>
+                                           @*<br />
+                                            <br />
+                                            <input type="button" class="btn btn-primary" style="width: 120px;" value="Sign In"  ng-click="SignInLink();">*@
+                                        </div>
+                                        <br />
+                                        <ul class="rslides callbacks callbacks1" id="slider4" ng-repeat="notice in NoticeList">
+                                            <li>
+                                                <div class="banner_text" ng-if="notice.IsActive == true && notice.HasVoting == true">
+                                                    <h4 style="color: white;">{{notice.Description}}</h4>
+                                                    <span style="color: white;">Vote Here....</span>
+                                                    <div class="w3-button">
+                                                        <input type="button" value="Yes" ng-click="PositiveVoting(notice);">
+                                                        <input type="button" value="No" ng-click="NegativeVoting(notice);">
+                                                    </div>
+                                                </div>
+                                                <div class="banner_text" ng-if="notice.IsActive == true && notice.HasVoting == false">
+                                                    <h4 style="color: white;">{{notice.Description}}</h4>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                    <script src="~/UserTemplate/js/responsiveslides.min.js"></script>
+                                    <script>
+                                        // You can also use "$(window).load(function() {"
+                                        $(function () {
+                                            // Slideshow 4
+                                            $("#slider4").responsiveSlides({
+                                                auto: true,
+                                                pager: true,
+                                                nav: true,
+                                                speed: 500,
+                                                namespace: "callbacks",
+                                                before: function () {
+                                                    $('.events').append("<li>before event fired.</li>");
+                                                },
+                                                after: function () {
+                                                    $('.events').append("<li>after event fired.</li>");
+                                                }
+                                            });
+
+                                        });
+                                    </script>
+                                    <!--banner Slider starts Here-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //banner -->
+        <!-- about -->
+        <div class="about" id="about">
+            <div class="container">
+                <div class="welcome">
+                    <div class="agileits-title">
+                        <h2>Welcome</h2>
+                        <p>Do you hate stepping into a crusty, old GameStop to buy the newest video games, because there aren't brick-and-mortar alternatives? Well, let us tell you about this hot new thing called the internet. Online connections are speedier than ever, which means you can download enormous titles in just a few minutes.</p>
+                    </div>
+                </div>
+                <div class="about-w3lsrow">
+                    <div class="col-md-7 col-sm-7 w3about-img">
+                        <div class="w3about-text">
+                            <h5 class="w3l-subtitle">- About Us</h5>
+                            <p>
+                                UNIQUE SHOP established in 2021 (from 2018 in facebook), located in the state of Dinajpur in Bangladesh. Mainly our products is games topup.
+                                We provide these services at competitive price while maintaining the highest of standards.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+        <!-- //about -->
+        <!-- portfolio -->
+        <div class="portfolio" id="gallery">
+            <div class="container">
+                <div class="agileits-title">
+                    <h3>Games</h3>
+                </div>
+
+                <div class="filtr-container w3layouts agileits">
+
+                    <ul ng-repeat="GameTopup in GameTopupList" style="list-style-type: none; text-decoration: none; float:left; text-align: center;">
+                        <li class="GameTopupsZoom" ng-if="GameTopup.IsActive == true" style="transition: transform .2s;" ng-click="GoToOrderPage(GameTopup);">
+                            <div style="height: 347px; width: 280px; border: 1px solid #FF9800; border-radius: 5px;">
+                                <div style="height: 100%;">
+                                    <div style="height:80%;">
+                                        <img src="~/UploadedFiles/{{GameTopup.ImageUrl}}" style="width:278px;height:278px;border-radius: 5px;">
+                                    </div>
+                                    <div style="background-color: #FF9800; height: 20%; display: flex; align-items: center;justify-content: space-around;">
+                                        <span style="color: white"> {{GameTopup.GameName}}({{GameTopup.OfferName}})</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!-- //portfolio -->
+        <!-- modal -->
+        <div class="modal about-modal fade" id="myModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Games <span>Hub</span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="agileits-w3layouts-info">
+                            <img href="~/UserTemplate/images/1.jpg" alt="" />
+                            <p>Duis venenatis, turpis eu bibendum porttitor, sapien quam ultricies tellus, ac rhoncus risus odio eget nunc. Pellentesque ac fermentum diam. Integer eu facilisis nunc, a iaculis felis. Pellentesque pellentesque tempor enim, in dapibus turpis porttitor quis. Suspendisse ultrices hendrerit massa. Nam id metus id tellus ultrices ullamcorper.  Cras tempor massa luctus, varius lacus sit amet, blandit lorem. Duis auctor in tortor sed tristique. Proin sed finibus sem</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //modal -->
+        <!-- testimonial -->
+        <div class="jarallax testimonial" id="testimonial">
+            <div class="testimonial-dot">
+                <div class="container">
+                    <div class="agileits-title testimonial-heading">
+                        <h3>Testimonial</h3>
+                    </div>
+                    <div class="w3-agile-testimonial">
+                        <div class="slider">
+                            <div class="callbacks_container">
+                                <ul class="rslides callbacks callbacks1" id="slider3">
+                                    <li>
+                                        <div class="testimonial-img-grid">
+                                            <div class="testimonial-img t-img1">
+                                                <img href="~/UserTemplate/images/ts1.jpg" alt="" />
+                                            </div>
+                                            <div class="testimonial-img">
+                                                <img href="~/UserTemplate/images/ts2.jpg" alt="" />
+                                            </div>
+                                            <div class="testimonial-img t-img2">
+                                                <img href="~/UserTemplate/images/ts3.jpg" alt="" />
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                        <div class="testimonial-img-info">
+                                            <p>In the last few decades, gaming industries have tremendously evolved and grown. Some major changes took place such as the arrival of virtual realities, online-based gaming, and others. The popularity of online gaming has also skyrocketed. Now we are working on it.</p>
+                                            <h5>Achievement</h5>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"> </div>
+                            <script>
+                                // You can also use "$(window).load(function() {"
+                                $(function () {
+                                    // Slideshow 4
+                                    $("#slider3").responsiveSlides({
+                                        auto: true,
+                                        pager: false,
+                                        nav: false,
+                                        speed: 500,
+                                        namespace: "callbacks",
+                                        before: function () {
+                                            $('.events').append("<li>before event fired.</li>");
+                                        },
+                                        after: function () {
+                                            $('.events').append("<li>after event fired.</li>");
+                                        }
+                                    });
+
+                                });
+                            </script>
+                            <!--banner Slider starts Here-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //testimonial -->
+
+        <script src="~/UserTemplate/js/classie.js"></script>
+        <script>
+            (function () {
+                // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+                if (!String.prototype.trim) {
+                    (function () {
+                        // Make sure we trim BOM and NBSP
+                        var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                        String.prototype.trim = function () {
+                            return this.replace(rtrim, '');
+                        };
+                    })();
+                }
+
+                [].slice.call(document.querySelectorAll('input.input__field')).forEach(function (inputEl) {
+                    // in case the input is already filled..
+                    if (inputEl.value.trim() !== '') {
+                        classie.add(inputEl.parentNode, 'input--filled');
+                    }
+
+                    // events:
+                    inputEl.addEventListener('focus', onInputFocus);
+                    inputEl.addEventListener('blur', onInputBlur);
+                });
+
+                function onInputFocus(ev) {
+                    classie.add(ev.target.parentNode, 'input--filled');
+                }
+
+                function onInputBlur(ev) {
+                    if (ev.target.value.trim() === '') {
+                        classie.remove(ev.target.parentNode, 'input--filled');
+                    }
+                }
+            })();
+        </script>
+        <!-- //mail -->
+        <!-- footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <div class="col-md-4 amet-sed">
+                        <div class="footer-title">
+                            <h3>About Us</h3>
+                        </div>
+                        <p>
+                            We are committed in creating an enjoyable, safe and healthy environment. In so doing, we commit ourselves to contributing positively to the development of the community in which we serve and to be a good corporate citizen. We manage to improve our service in future.
+                        </p>
+                    </div>
+                    <div class="col-md-4 amet-sed amet-medium">
+                        <div class="footer-title">
+                            <h3>Facebook</h3>
+                        </div>
+                        <p><a href="https://web.facebook.com/uniquebrothersgameshop/?_rdc=1&_rdr">facebook.com/uniquebrothersgameshop</a> It's our official page. We are dealing with this page also. If you want to contact with us, feel free to communicate. </p>
+                    </div>
+                    <div class="col-md-4 amet-sed ">
+                        <div class="footer-title">
+                            <h3>Follow Us</h3>
+                        </div>
+                        <div class="agileinfo-social-grids">
+                            <ul>
+                                <li><a href="https://web.facebook.com/uniquebrothersgameshop/?_rdc=1&_rdr"><i class="fab fa-facebook"></i></a></li>
+                                <li><a href="https://t.me/uniqueshoptopup"><i class="fab fa-telegram"></i></a></li>
+                                <li><a href="https://www.youtube.com/channel/UC__UsNrAzeIYLmVdNF4ZLhQ"><i class="fab fa-youtube"></i></a></li>
+
+                            </ul>
+                        </div>
+                        <div class="support">
+
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+        <!-- //footer -->
+    </div>
+
+    <!-- copyright -->
+    <div class="copyright">
+        <div class="container">
+            <p class="footer-class">&copy; @DateTime.Now.Year All Rights Reserved by  <a href="#">UNIQUE SHOP</a> </p>
+        </div>
+    </div>
+    <!-- //copyright -->
+    <script src="~/UserTemplate/js/jarallax.js"></script>
+    <!-- <script src="js/SmoothScroll.min.js"></script> -->
+    <script type="text/javascript">
+        /* init Jarallax */
+        $('.jarallax').jarallax({
+            speed: 0.5,
+            imgWidth: 1366,
+            imgHeight: 768
+        })
+    </script>
+    <script src="~/UserTemplate/js/responsiveslides.min.js"></script>
+    <script type="text/javascript" src="~/UserTemplate/js/move-top.js"></script>
+    <script type="text/javascript" src="~/UserTemplate/js/easing.js"></script>
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <!-- //here ends scrolling icon -->
+    <!-- Tabs-JavaScript -->
+    <script src="~/UserTemplate/js/jquery.filterizr.js"></script>
+    <script src="~/UserTemplate/js/controls.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.filtr-container').filterizr();
+        });
+    </script>
+    <!-- //Tabs-JavaScript -->
+    <!-- PopUp-Box-JavaScript -->
+    <script src="~/UserTemplate/js/jquery.chocolat.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.filtr-item a').Chocolat();
+        });
+    </script>
+    <!-- //PopUp-Box-JavaScript -->
+</body>
+</html>

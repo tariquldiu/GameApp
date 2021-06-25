@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/Controller/PaymentGateway.js"></script>
+
+<h4 id="forms-example" class="">Insert Payment Gateway</h4>
+<div class="grid-form1" ng-app="myApp">
+
+    <div class="row" ng-controller="PaymentGateway">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="PaymentGateway.GatewayName" disabled placeholder="Gateway Name">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="PaymentGateway.AccountType" placeholder="Account Type">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="PaymentGateway.AccountNumber" placeholder="Account Number">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="number" class="form-control" ng-model="PaymentGateway.DiscountAmount" placeholder="Discount Amount">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="number" class="form-control" ng-model="PaymentGateway.ChargeAmount" placeholder="Charge Amount">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>
+                    <input type="submit" class="btn btn-warning" ng-disabled="!PaymentGateway.GatewayName || !PaymentGateway.AccountType || !PaymentGateway.AccountNumber || !PaymentGateway.DiscountAmount || !PaymentGateway.ChargeAmount" ng-click="SavePaymentGateway()" value="{{btnSave}}">
+                </label>
+                <label>
+                    <input type="submit" class="btn btn-danger" ng-click="BackToPaymentGatewayList()" value="List">
+                </label>
+            </div>
+        </div>
+
+    </div>
+</div>

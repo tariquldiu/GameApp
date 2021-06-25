@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/Controller/Product.js"></script>
+
+<div ng-app="myApp">
+    <div ng-controller="Product">
+        <span style="font-size:20px; float: left;">Product List</span>
+        <span style="float: right;"><button class="btn btn-success" ng-click="AddProduct();"><i class="glyphicon-plus"></i>Product</button></span>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">S/L</th>
+                    <th style="text-align: center;">Product Nmae</th>
+                    <th style="text-align: center;">Product Type</th>
+                    <th style="text-align: center;">Price</th>
+                    <th style="text-align: center;">Currency</th>
+                    <th style="text-align: center;">Updated Date</th>
+                    <th style="text-align: center;">Is Active</th>
+                    <th style="text-align: center;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="Product in ProductList">
+                    <td style="text-align: center;">{{$index+1}}</td>
+                    <td style="text-align: center;">{{Product.ProductName}}</td>
+                    <td style="text-align: center;">{{Product.ProductType}}</td>
+                    <td style="text-align: center;">{{Product.ProductPrice}}</td>
+                    <td style="text-align: center;">{{Product.Currency}}</td>
+                    <td style="text-align: center;">{{Product.UpdatedDateSt}}</td>
+                    <td style="text-align: center;" ng-show="{{Product.IsActive==true}}">Yes</td>
+                    <td style="text-align: center;" ng-show="{{Product.IsActive==false}}">No</td>
+
+                    <td>
+                        <button type="button" class="btn btn-warning" ng-click="EditProduct(Product);">Edit</button>
+                        <button type="button" class="btn btn-danger" ng-click="DeleteProduct(Product);">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

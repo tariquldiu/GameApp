@@ -1,0 +1,82 @@
+﻿
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Minimal an Admin Panel Category Flat Bootstrap Responsive Website Template | Signup :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="~/AdminTemplate/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+    <link href="~/AdminTemplate/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/AdminTemplate/css/font-awesome.css" rel="stylesheet">
+    <script src="~/AdminTemplate/js/jquery.min.js"></script>
+    <script src="~/AdminTemplate/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/Controller/Users.js"></script>
+</head>
+<body>
+    <div class="login" ng-app="myApp">
+        <h1><a href="https://bduniqueshop.com/">UNIQUE SHOP </a></h1>
+        <div class="login-bottom" ng-controller="Users">
+            <h2>Register</h2>
+            <div class="col-md-6">
+                <div class="login-mail">
+                    <input type="text" placeholder="Full Name" ng-model="User.FullName" maxlength="40" ng-keypress="SetSignupPhoneFocus($event)" required="">
+                    <i class="fa fa-file-text"></i>
+                </div>
+                <div class="login-mail">
+                    <input type="text" id="signupPhone" placeholder="Phone" ng-model="User.Phone" maxlength="14" ng-keypress="SetSignupEmailFocus($event)" required="">
+                    <i class="fa fa-file-text"></i>
+                </div>
+               
+               
+            </div>
+            <div class="col-md-6">
+                <div class="login-mail">
+                    <input id="signupPassword" type="password" ng-model="User.Password" maxlength="16" ng-keypress="SetSignupRepeatedPassFocus($event)" placeholder="Password" required="">
+                    <i class="fa fa-lock"></i>
+                </div>
+                <div class="login-mail">
+                    <input id="signupRepeatedPassword" type="password" ng-model="User.ConfirmPassword" maxlength="16" ng-keypress="SetSignupBtnFocus($event)" placeholder="Confirm password" required="">
+                    <i class="fa fa-lock"></i>
+                </div>
+               
+            </div>
+            <div class="col-md-6">
+                <div class="login-mail">
+                    <input type="text" id="signupEmail" placeholder="Email" ng-model="User.Email" maxlength="40" ng-keypress="SetSignupUsernameFocus($event)" required="">
+                    <i class="fa fa-envelope"></i>
+                </div>
+                <div class="login-mail">
+                    <input type="text" id="signupUsername" placeholder="Username" ng-model="User.UserName" maxlength="12" ng-keypress="SetSignupPassFocus($event)" required="">
+                    <i class="fa fa-user"></i>
+                </div>
+            </div>
+            <div class="col-md-6 login-do">
+                <label class="hvr-shutter-in-horizontal login-sub">
+                    <input type="submit" id="btnSignup" ng-disabled="!User.UserName || !User.Password || !User.ConfirmPassword || !User.FullName || !User.Phone || !User.Email" ng-click="Save()" value="Submit">
+                </label>
+                <p>Already registered?</p>
+                <a href="/Users/Login" class="hvr-shutter-in-horizontal">Login</a>
+
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!---->
+    <div class="copy-right">
+        <p> &copy; @DateTime.Now.Year All Rights Reserved by  <a href="#">UNIQUE SHOP</a> </p>
+    </div>
+
+    <!---->
+    <!--scrolling js-->
+    <script src="~/AdminTemplate/js/jquery.nicescroll.js"></script>
+    <script src="~/AdminTemplate/js/scripts.js"></script>
+    <!--//scrolling js-->
+</body>
+</html>
+
+

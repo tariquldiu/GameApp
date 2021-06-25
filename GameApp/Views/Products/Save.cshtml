@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/Controller/Product.js"></script>
+
+<h4 id="forms-example" class="">Insert Product</h4>
+<div class="grid-form1" ng-app="myApp">
+
+    <div class="row" ng-controller="Product">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="Product.ProductName" placeholder="Product Name">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="Product.ProductType" placeholder="Product Type">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="number" class="form-control" ng-model="Product.ProductPrice" placeholder="Price">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="Product.Currency" placeholder="Currency">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>
+                    <input type="submit" class="btn btn-warning" ng-disabled="!Product.ProductName || !Product.ProductPrice || !Product.Currency" ng-click="SaveProduct()" value="Submit">
+                </label>
+                <label>
+                    <input type="submit" class="btn btn-danger" ng-click="BackToProductList()" value="List">
+                </label>
+            </div>
+        </div>
+
+    </div>
+</div>
